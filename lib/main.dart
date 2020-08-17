@@ -38,32 +38,13 @@ class PoolSite {
 }
 
 class _MyPlanPageState extends State<MyPlanPage> {
-  final theEagle = PoolSite(
-    'Seattle Eagle',
-    47.614172,
-    -122.327119,
-    '314 Pike St',
-  );
   final Map<String, Marker> _markers = {};
   final LatLng _center = const LatLng(47.605, -122.325);
-  void _onMapCreated(GoogleMapController controller) {
+  Future<void> _onMapCreated(GoogleMapController controller) async {
     //Future<void> _onMapCreated(GoogleMapController controller) async {
     //final googleOffices = await locations.getGoogleOffices();
     setState(() {
       _markers.clear();
-      //for (final site in siteList) {
-      final marker = Marker(
-        markerId: MarkerId(theEagle.name),
-        position: LatLng(theEagle.lat, theEagle.lng),
-        infoWindow: InfoWindow(
-          title: theEagle.name,
-          snippet: theEagle.address,
-        ),
-      );
-      _markers[theEagle.name] = marker;
-      print("The Eagle");
-      theEagle.disp();
-      //}
     });
   }
   //GoogleMapController mapController;
@@ -74,6 +55,21 @@ class _MyPlanPageState extends State<MyPlanPage> {
 
   @override
   Widget build(BuildContext context) {
+    final otherEagle = PoolSite(
+      'Seattle Eagle',
+      47.614172,
+      -122.327119,
+      '314 Pike St',
+    );
+    final otherMarker = Marker(
+      markerId: MarkerId(otherEagle.name),
+      position: LatLng(otherEagle.lat, otherEagle.lng),
+      infoWindow: InfoWindow(
+        title: otherEagle.name,
+        snippet: otherEagle.address,
+      ),
+    );
+    var otherSet = <Marker>{otherMarker};
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -86,6 +82,7 @@ class _MyPlanPageState extends State<MyPlanPage> {
             target: _center,
             zoom: 11.0,
           ),
+          markers: otherSet,
         ),
       ),
     );
