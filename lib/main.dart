@@ -104,7 +104,16 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(icon: Icon(Icons.mms), onPressed: _connect),
         ],
       ),
-      body: Center(),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/el-pescador-beach-in-california.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        //child: Text(
+        //    "photo credit: National Park Service via www.goodfreephotos.com")
+      ),
     );
   }
 }
