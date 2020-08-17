@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:permission/permission.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,7 +27,7 @@ class MyPlanPage extends StatefulWidget {
 
 class _MyPlanPageState extends State<MyPlanPage> {
   GoogleMapController mapController;
-  final LatLng _center = const LatLng(45.521563, -122.677433);
+  final LatLng _center = const LatLng(47.605, -122.325);
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
@@ -38,7 +37,7 @@ class _MyPlanPageState extends State<MyPlanPage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("New Plan!"),
+          title: Text("Plan!"),
           backgroundColor: Colors.green[700],
         ),
         body: GoogleMap(
@@ -64,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _plan() {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(builder: (BuildContext context) {
-      return MyPlanPage(title: 'plan more!');
+      return MyPlanPage(title: 'Plan3');
       //Scaffold(
       //  appBar: AppBar(
       //    title: Text('Plan!'),
