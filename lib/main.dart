@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+//import 'src/locations.dart' as locations;
 
 void main() => runApp(MyApp());
 
@@ -18,26 +19,65 @@ class MyApp extends StatelessWidget {
 }
 
 class MyPlanPage extends StatefulWidget {
-  @override
+  @override // supposed to annotate these?
   MyPlanPage({Key key, this.title}) : super(key: key);
   final String title;
   @override
   _MyPlanPageState createState() => _MyPlanPageState();
 }
 
+class PoolSite {
+  String name;
+  double lat;
+  double lng;
+  String address;
+  PoolSite(this.name, this.lat, this.lng, this.address);
+  void disp() {
+    print('$name, $lat, $lng, $address');
+  }
+}
+
 class _MyPlanPageState extends State<MyPlanPage> {
-  GoogleMapController mapController;
+  final theEagle = PoolSite(
+    'Seattle Eagle',
+    47.614172,
+    -122.327119,
+    '314 Pike St',
+  );
+  final Map<String, Marker> _markers = {};
   final LatLng _center = const LatLng(47.605, -122.325);
   void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+    //Future<void> _onMapCreated(GoogleMapController controller) async {
+    //final googleOffices = await locations.getGoogleOffices();
+    setState(() {
+      _markers.clear();
+      //for (final site in siteList) {
+      final marker = Marker(
+        markerId: MarkerId(theEagle.name),
+        position: LatLng(theEagle.lat, theEagle.lng),
+        infoWindow: InfoWindow(
+          title: theEagle.name,
+          snippet: theEagle.address,
+        ),
+      );
+      _markers[theEagle.name] = marker;
+      print("The Eagle");
+      theEagle.disp();
+      //}
+    });
   }
+  //GoogleMapController mapController;
+  //final LatLng _center = const LatLng(47.605, -122.325);
+  //void _onMapCreated(GoogleMapController controller) {
+  //  mapController = controller;
+  //}
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Plan!"),
+          title: Text('Plan!'),
           backgroundColor: Colors.green[700],
         ),
         body: GoogleMap(
@@ -55,7 +95,7 @@ class _MyPlanPageState extends State<MyPlanPage> {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
-  @override
+  @override // these are supposed to be annotated?
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -107,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/el-pescador-beach-in-california.jpg"),
+            image: AssetImage('images/el-pescador-beach-in-california.jpg'),
             fit: BoxFit.cover,
           ),
         ),
