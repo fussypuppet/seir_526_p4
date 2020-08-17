@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission/permission.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyPlanPage extends StatefulWidget {
+  @override
+  MyPlanPage({Key key, this.title}) : super(key: key);
+  final String title;
   @override
   _MyPlanPageState createState() => _MyPlanPageState();
 }
@@ -60,11 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void _plan() {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(builder: (BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Plan!'),
-        ),
-      );
+      return MyPlanPage(title: 'plan more!');
+      //Scaffold(
+      //  appBar: AppBar(
+      //    title: Text('Plan!'),
+      //  ),
+      //);
     }));
   }
 
