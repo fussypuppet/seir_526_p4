@@ -192,11 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _play() {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(builder: (BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Play!'),
-        ),
-      );
+      return HomePage();
     }));
   }
 
