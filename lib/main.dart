@@ -30,10 +30,13 @@ class PoolSite {
   String name;
   double lat;
   double lng;
-  String address;
-  PoolSite(this.name, this.lat, this.lng, this.address);
+  PoolSite(
+    this.name,
+    this.lat,
+    this.lng,
+  );
   void disp() {
-    print('$name, $lat, $lng, $address');
+    print('$name, $lat, $lng');
   }
 }
 
@@ -55,21 +58,43 @@ class _MyPlanPageState extends State<MyPlanPage> {
 
   @override
   Widget build(BuildContext context) {
-    final otherEagle = PoolSite(
-      'Seattle Eagle',
-      47.614172,
-      -122.327119,
-      '314 Pike St',
-    );
-    final otherMarker = Marker(
-      markerId: MarkerId(otherEagle.name),
-      position: LatLng(otherEagle.lat, otherEagle.lng),
-      infoWindow: InfoWindow(
-        title: otherEagle.name,
-        snippet: otherEagle.address,
-      ),
-    );
-    var otherSet = <Marker>{otherMarker};
+    var beachSet = <Marker>{};
+    const theseBeaches = [
+      ['Richmond Beach Saltwater Park', 47.7652, -122.383],
+      ['Carkeek Park', 47.7119, -122.3724],
+      ['Golden Gardens Park', 47.6925, -122.4029],
+      ['Charles Richey Sr Viewpoint', 47.5735, -122.4164],
+      ['Lincoln Park', 47.5315, -122.3929],
+      ['Seahurst Ed Munro Park', 47.4695, -122.3622],
+      ['Saltwater State Park', 47.3742, -122.3191],
+      ['Des Moines Beach Park', 47.4048, -122.3284],
+      ['Redondo Beach', 47.3486, -122.3243],
+      ['Dash Point State Park', 47.317, -122.4073],
+    ];
+    for (var i = 0; i < theseBeaches.length; i++) {
+      var marker = Marker(
+        markerId: MarkerId(theseBeaches[i][0]),
+        position: LatLng(theseBeaches[i][1], theseBeaches[i][2]),
+        infoWindow: InfoWindow(
+          title: theseBeaches[i][0],
+        ),
+      );
+      beachSet.add(marker);
+    }
+    //final otherEagle = PoolSite(
+    //  'Seattle Eagle',
+    //  47.614172,
+    //  -122.327119,
+    //);
+    //final otherMarker = Marker(
+    //  markerId: MarkerId(otherEagle.name),
+    //   position: LatLng(otherEagle.lat, otherEagle.lng),
+    //   infoWindow: InfoWindow(
+    //     title: otherEagle.name,
+    //     snippet: otherEagle.address,
+    //   ),
+    //);
+    // var otherSet = <Marker>{otherMarker};
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -82,7 +107,7 @@ class _MyPlanPageState extends State<MyPlanPage> {
             target: _center,
             zoom: 11.0,
           ),
-          markers: otherSet,
+          markers: beachSet,
         ),
       ),
     );
