@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-//import 'src/locations.dart' as locations;
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,19 +26,19 @@ class MyPlanPage extends StatefulWidget {
   _MyPlanPageState createState() => _MyPlanPageState();
 }
 
-class PoolSite {
-  String name;
-  double lat;
-  double lng;
-  PoolSite(
-    this.name,
-    this.lat,
-    this.lng,
-  );
-  void disp() {
-    print('$name, $lat, $lng');
-  }
-}
+//class PoolSite {
+//  String name;
+//  double lat;
+//  double lng;
+//  PoolSite(
+//    this.name,
+//    this.lat,
+//    this.lng,
+//  );
+//  void disp() {
+//    print('$name, $lat, $lng');
+//  }
+//}
 
 class _MyPlanPageState extends State<MyPlanPage> {
   final Map<String, Marker> _markers = {};
@@ -114,6 +114,51 @@ class _MyPlanPageState extends State<MyPlanPage> {
   }
 }
 
+class MyConnectPage extends StatefulWidget {
+  MyConnectPage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override // still not sure what I'm overriding but the app loves comments
+  _MyConnectPageState createState() => _MyConnectPageState();
+}
+
+class _MyConnectPageState extends State<MyConnectPage> {
+  @override // just for giggles
+  var theseImages = [
+    AssetImage('images/18025.jpeg'),
+    AssetImage('images/18125.jpeg'),
+    AssetImage('images/18126.jpeg'),
+    AssetImage('images/18128.jpeg'),
+    AssetImage('images/18152.jpeg'),
+    AssetImage('images/18154.jpeg'),
+    AssetImage('images/18156.jpeg'),
+    AssetImage('images/18158.jpeg'),
+    AssetImage('images/18159.jpeg'),
+    AssetImage('images/18320.jpeg'),
+    AssetImage('images/18322.jpeg')
+  ];
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+      options: CarouselOptions(height: 400.0),
+      items: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.symmetric(horizontal: 5.0),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: theseImages[i],
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
+          },
+        );
+      }).toList(),
+    );
+  }
+}
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -148,11 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _connect() {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(builder: (BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Connect!'),
-        ),
-      );
+      return MyConnectPage(title: 'Connect!');
     }));
   }
 
@@ -169,6 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
+            //image: AssetImage('images/18025.jpeg'),
             image: AssetImage('images/el-pescador-beach-in-california.jpg'),
             fit: BoxFit.cover,
           ),
