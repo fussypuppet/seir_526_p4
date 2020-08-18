@@ -80,6 +80,9 @@ flutter:
     - images/18159.jpeg
     - images/18320.jpeg
     - images/18322.jpeg
+    - images/ic_fieldTrippa.png
+    - images/ic_fieldTrippa.svg
+    - lockup_photos_horizontal.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

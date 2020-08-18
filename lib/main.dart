@@ -207,13 +207,53 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        actions: [
-          IconButton(icon: Icon(Icons.schedule), onPressed: _plan),
-          IconButton(icon: Icon(Icons.terrain), onPressed: _play),
-          IconButton(icon: Icon(Icons.mms), onPressed: _connect),
-        ],
+//        actions: [
+//          FlatButton(
+//            child: Text("Plan!", style: TextStyle(color: Colors.white)),
+//            onPressed: _plan,
+//          ),
+//          FlatButton(
+//            child: Text("Share!", style: TextStyle(color: Colors.white)),
+//            onPressed: _play,
+//          ),
+//          FlatButton(
+//            child: Text("View!", style: TextStyle(color: Colors.white)),
+//            onPressed: _connect,
+//          ),
+//        ],
       ),
       body: Container(
+        child: Column(
+          children: [
+            FlatButton(
+              textColor: Colors.white,
+              color: Colors.blue,
+              child: Text("Plan a trip", style: TextStyle(fontSize: 20.0)),
+              onPressed: _plan,
+            ),
+            FlatButton(
+              textColor: Colors.white,
+              color: Colors.blue,
+              child:
+                  Text("Share your photos", style: TextStyle(fontSize: 20.0)),
+              onPressed: _play,
+            ),
+            FlatButton(
+              textColor: Colors.white,
+              color: Colors.blue,
+              child:
+                  Text("View photo carousel", style: TextStyle(fontSize: 20.0)),
+              onPressed: _connect,
+            ),
+            Expanded(
+              child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                      "photo credit: National Park Service via www.goodfreephotos.com",
+                      style: TextStyle(color: Colors.white))),
+            )
+          ],
+        ),
         decoration: BoxDecoration(
           image: DecorationImage(
             //image: AssetImage('images/18025.jpeg'),
@@ -222,7 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         //child: Text(
-        //    "photo credit: National Park Service via www.goodfreephotos.com")
+        //    "")
       ),
     );
   }

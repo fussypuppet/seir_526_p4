@@ -29,17 +29,17 @@ class TripAppBar extends StatelessWidget implements PreferredSizeWidget {
         return AppBar(
           title: Row(
             children: <Widget>[
-              Container(
-                child: SvgPicture.asset(
-                  'assets/ic_fieldTrippa.svg',
-                  excludeFromSemantics: true,
-                  color: Colors.green[800],
-                ),
-                padding: const EdgeInsets.only(right: 8),
-              ),
+              //Container(
+              //  child: SvgPicture.asset(
+              //    'images/ic_fieldTrippa.svg',
+              //    excludeFromSemantics: true,
+              //    color: Colors.green[800],
+              //  ),
+              //  padding: const EdgeInsets.only(right: 8),
+              //),
               Text(
-                'Field Trippa',
-                style: TextStyle(color: Colors.green[800]),
+                'Plenty of Starfish',
+                style: TextStyle(color: Colors.white),
               ),
             ],
           ),

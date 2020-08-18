@@ -50,11 +50,11 @@ class TripListPage extends StatelessWidget {
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              SvgPicture.asset(
-                'assets/ic_fieldTrippa.svg',
-                color: Colors.grey[300],
-                height: 148,
-              ),
+              //SvgPicture.asset(
+              //  'images/ic_fieldTrippa.svg',
+              //  color: Colors.grey[300],
+              //  height: 148,
+              //),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
@@ -141,10 +141,10 @@ class TripListPage extends StatelessWidget {
         width: 346,
         color: Colors.grey[200],
         padding: const EdgeInsets.all(5),
-        child: SvgPicture.asset(
-          'assets/ic_fieldTrippa.svg',
-          color: Colors.grey[350],
-        ),
+        //child: SvgPicture.asset(
+        //  'images/ic_fieldTrippa.svg',
+        //  color: Colors.grey[350],
+        //),
       );
     }
 
