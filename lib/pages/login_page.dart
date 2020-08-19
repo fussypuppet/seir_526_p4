@@ -38,12 +38,12 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SvgPicture.asset(
-              'assets/lockup_photos_horizontal.svg',
+              'images/lockup_photos_horizontal.svg',
             ),
             Container(
               padding: const EdgeInsets.all(30),
               child: const Text(
-                'Trips from Field Trippa will be stored as shared albums in '
+                'Trips from Tidepool Finder will be stored as shared albums in '
                 'Google Photos',
                 textAlign: TextAlign.center,
                 style: TextStyle(

@@ -217,7 +217,7 @@ class _TripPageState extends State<TripPage> {
         child: FlatButton(
           onPressed: () => _showShareToken(context),
           textColor: Colors.green[800],
-          child: const Text('SHARE IN FIELD TRIPPA'),
+          child: const Text('SHARE IN TIDEPOOL FINDER'),
         ),
       ),
     ]);

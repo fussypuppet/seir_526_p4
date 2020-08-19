@@ -109,7 +109,7 @@ class _MyPlanPageState extends State<MyPlanPage> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Plan!'),
-          backgroundColor: Colors.green[700],
+          backgroundColor: Colors.blue[700],
         ),
         body: GoogleMap(
           onMapCreated: _onMapCreated,
