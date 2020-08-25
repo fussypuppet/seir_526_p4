@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Plenty of Starfish'),
+      home: MyHomePage(title: 'Tidepool Finder'),
     );
   }
 }
@@ -35,20 +35,6 @@ class MyPlanPage extends StatefulWidget {
   @override
   _MyPlanPageState createState() => _MyPlanPageState();
 }
-
-//class PoolSite {
-//  String name;
-//  double lat;
-//  double lng;
-//  PoolSite(
-//    this.name,
-//    this.lat,
-//    this.lng,
-//  );
-//  void disp() {
-//    print('$name, $lat, $lng');
-//  }
-//}
 
 class _MyPlanPageState extends State<MyPlanPage> {
   final Map<String, Marker> _markers = {};
@@ -207,20 +193,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-//        actions: [
-//          FlatButton(
-//            child: Text("Plan!", style: TextStyle(color: Colors.white)),
-//            onPressed: _plan,
-//          ),
-//          FlatButton(
-//            child: Text("Share!", style: TextStyle(color: Colors.white)),
-//            onPressed: _play,
-//          ),
-//          FlatButton(
-//            child: Text("View!", style: TextStyle(color: Colors.white)),
-//            onPressed: _connect,
-//          ),
-//        ],
       ),
       body: Container(
         child: Column(

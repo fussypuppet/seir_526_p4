@@ -29,7 +29,50 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB31S7MGbLBtx5__Q9iIRSoDjFrfB05BVo"
+          "current_key": "AIzaSyBJHSx27LwjYSgY9PWGHNOEaBslGvGU-nY"
+        },
+        {
+          "current_key": "AIzaSyDVzybcXFaAJS42kmNnXywgI-M98X0ljlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054328946532-6op085ck8g6s44f6rh4fsidk721077mb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054328946532:android:6a5b46710c6de5b20a8471",
+        "android_client_info": {
+          "package_name": "dev.davidson.p4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054328946532-vhcvtftta62ufaev07dnl037mug7mq9e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.davidson.p4",
+            "certificate_hash": "b05f4938d75b8922a850b360c714a48e78bcacb7"
+          }
+        },
+        {
+          "client_id": "1054328946532-6op085ck8g6s44f6rh4fsidk721077mb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJHSx27LwjYSgY9PWGHNOEaBslGvGU-nY"
+        },
+        {
+          "current_key": "AIzaSyDVzybcXFaAJS42kmNnXywgI-M98X0ljlk"
         }
       ],
       "services": {

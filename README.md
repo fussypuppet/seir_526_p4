@@ -1,39 +1,60 @@
-# Project 4
-For your fourth project you will work, either on your own or in small teams, to build a proof of concept using a new techonology or library that we have not explored already in class. 
+# Tide Pool Finder
+Tide Pool Finder is an app designed to facilitate finding great local sites to explor tide pools, take photos of what you find, and share those photos with others who are looking for great places to visit!
 
-The intention of this project is that you either 1. try out a new technology you've been interested in using, but that we haven't used in class or 2. have an idea for a post cohort project which you can create an MVP of a feature for or an MVP for the project itself during the window of our P4.
+This is the first mobile app I've written and my first time using Flutter & Dart, so to begin I've prioritized exploring how the language works and what packages are available over elegance.  For now, the app is divided into three sections that each explore a particular set of packages.  Two of them are based on tutorials available on Google Codelabs.  Eventually I would like them to seamlessly flow into one another so that users can quickly see photos of sites they're curious to visit and also view their own albuns in a fun carousel, but for now the three app sections don't interact with each other.
 
-When trying to scope your P4 think to how much you were able to accomplish during the hackathon, and keep your ideas to projects which include tasks that could fit that scope, plus some added features. 
+As mentioned above, the app draws heavily from tutorials available from the Flutter documentation and Google Code Labs.  The code in main.dart is my own, but the code in other files is primarily from outside sources with some edits.
 
-*What does a non-passing P4 look like?*
-- If you do not make a meaninful attempt at trying and implementing a new technology
-- If you do not build anything substantial
-- If you do not put in meaningful work/git commits all six days of the project (including the weekend)
+After class is over, I will be collaborating with Ann Le from our parallel UX/UI course to improve the user experience, but for now I've focused on learning.
 
+# Screenshots
 
-## Ideas for Technologies to Use:
-- Vue.js (frontend framework). 
-- GraphQL (frontend querying language. Would recommend using with Hasura so that you don't have to take on Apollo and Prisma breaking change errors). 
-- Unity (in C#)
-- Integrating a Stripe frontend and backup to build a test level functional ecommmerce site
-- D3.js (a data visualization javascript library)
-- React-Bootstrap-Table or another React Table Library to create dynamic tables based on a database you create and seed
+The landing page currently offers three buttons.  Each implements a different Flutter package
 
-## Pitch Guidelines
-Your P4 Project Pitches will be submitted via pull requets on this repo. *Fork and clone this repo. Make a new file in this repo called `[YOUR NAME]-p4-pitch.md`, Write your markdown in that file. Push up, and submit a pull request to the original repo to submit*. The instructional staff will review your submissions and add feedback/close pull requests. 
+![landing page screenshot](./images/screenshot_landing_page.png)
 
-*Format for pitch markdown:*
-* Name of app
-* Your name/team members
-* New tech you plan on using
+## Plan a Trip
 
-Answer: 
-1. How do you plan on learning/implementing this new technology?
-2. What is your goal with this project?
-3. Who is the user for your app?
-4. Any potential roadblocks you think you might run into?
+The Plan a Trip button loads a Google Maps widget showing locations of local tide pools.  Clicking a map marker reveals the location's name and displays buttons that will open the Google Maps app.
 
-Include Graphics or Links to:
-* Breakdown individual tasks and what you plan on working on day by day (in a Trello board or some other project planning tool/format). 
-* Wireframes for app
-* User flow for app
+![initial maps widget](./images/screenshot_plan_page.png)
+
+Clicking a map marker reveals the location's name and displays buttons that will open the Google Maps app.
+
+![maps widget after clicking a marker](./images/screenshot_plan_page_2.png)
+
+![Google Maps app after clicking the directions button in the Tidepool Finder app](./images/screenshot_plan_page_3.png)
+
+## View Photo Carousel
+
+Clicking View Photo Carousel open an infinitely-scrollable carousel of photos. For now, the app just displays hard-coded photos of my puppy.
+
+![photo carousel screenshot](./images/screenshot_carousel.png)
+
+## Share Your Photos
+
+The Share Your Photos button connects the app to the user's Google Photos account.  In this section, the user can take photos with their phone's camera, log into their Google Photos account using OAuth, create albums to house their photos, and share those albums with other app users!
+
+OAuth screen
+![Oauth screen](./images/screenshot_oauth.png)
+
+Login screen
+![Login screen](./images/screenshot_login.png)
+
+Connection to Google Photos
+![Connecting to google photos](./images/screenshot_connect_photos.png)
+
+Granting app permissions
+![app permissions page](./images/screenshot_permissions.png)
+
+Taking a photo
+![taking a photo](./images/screenshot_camera.png)
+
+Viewing shared albums from other users
+![others' shared albums](./images/screenshot_view_albums.png)
+
+Creating a new album to share
+![create a new album](./images/screenshot_create_album.png)
+
+Uploading photos to the new album
+![upload photos to album](./images/screenshot_photo_upload.png)
