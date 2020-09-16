@@ -9,11 +9,12 @@ import 'model/photos_library_api_model.dart';
 import 'pages/home_page.dart';
 
 var theseImages = <dynamic>[
+  AssetImage('images/no_photos.png'),
   //AssetImage('images/18025.jpeg'),
   //AssetImage('images/18125.jpeg'),
-  AssetImage('images/18126.jpeg'),
-  AssetImage('images/18128.jpeg'),
-  AssetImage('images/18152.jpeg'),
+  //AssetImage('images/18126.jpeg'),
+  //AssetImage('images/18128.jpeg'),
+  //AssetImage('images/18152.jpeg'),
   //AssetImage('images/18154.jpeg'),
   //AssetImage('images/18156.jpeg'),
   //AssetImage('images/18158.jpeg'),
@@ -172,14 +173,14 @@ class MyGalleryPage extends StatefulWidget {
 
 class _MyGalleryPageState extends State<MyGalleryPage> {
   File _image;
-  FileImage _fileimage;
+  FileImage _fileImage;
   final picker = ImagePicker();
   Future getImageFromCamera() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
     setState(() {
       _image = File(pickedFile.path);
-      _fileimage = FileImage(_image);
-      theseImages.add(_fileimage);
+      _fileImage = FileImage(_image);
+      theseImages.add(_fileImage);
     });
   }
 
@@ -187,9 +188,13 @@ class _MyGalleryPageState extends State<MyGalleryPage> {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
     setState(() {
       _image = File(pickedFile.path);
-      _fileimage = FileImage(_image);
-      theseImages.add(_fileimage);
+      _fileImage = FileImage(_image);
     });
+    if (theseImages[0] == AssetImage('images/no_photos.png')) {
+      theseImages[0] = _fileImage;
+    } else {
+      theseImages.add(_fileImage);
+    }
   }
 
   @override
