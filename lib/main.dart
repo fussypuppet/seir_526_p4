@@ -174,8 +174,17 @@ class _MyGalleryPageState extends State<MyGalleryPage> {
   File _image;
   FileImage _fileimage;
   final picker = ImagePicker();
-  Future getImage() async {
+  Future getImageFromCamera() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
+    setState(() {
+      _image = File(pickedFile.path);
+      _fileimage = FileImage(_image);
+      theseImages.add(_fileimage);
+    });
+  }
+
+  Future getImageFromGallery() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
     setState(() {
       _image = File(pickedFile.path);
       _fileimage = FileImage(_image);
@@ -192,10 +201,15 @@ class _MyGalleryPageState extends State<MyGalleryPage> {
       body: Center(
         child: _image == null ? Text('No image selected') : Image.file(_image),
       ),
+      //floatingActionButton: FloatingActionButton(
+      //  onPressed: getImageFromCamera,
+      //  tooltip: 'Take Photo',
+      //  child: Icon(Icons.add_a_photo),
+      //),
       floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
-        tooltip: 'Pick Image',
-        child: Icon(Icons.add_a_photo),
+        onPressed: getImageFromGallery,
+        tooltip: 'Pick Image From Gallery',
+        child: Icon(Icons.add_photo_alternate),
       ),
     );
   }
