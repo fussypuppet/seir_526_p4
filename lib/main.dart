@@ -222,8 +222,13 @@ class _MyGalleryPageState extends State<MyGalleryPage> {
             ),
             Center(
               child: _image == null
-                  ? Text('No image selected')
-                  : Image.file(_image),
+                  ? Text('No image selected', style: TextStyle(fontSize: 20.0))
+                  : Column(
+                      children: [
+                        Image.file(_image),
+                        Text('Image added!', style: TextStyle(fontSize: 20.0)),
+                      ],
+                    ),
             )
           ],
         ),
