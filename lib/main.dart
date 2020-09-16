@@ -198,19 +198,36 @@ class _MyGalleryPageState extends State<MyGalleryPage> {
       appBar: AppBar(
         title: Text('Image Picker Example'),
       ),
-      body: Center(
-        child: _image == null ? Text('No image selected') : Image.file(_image),
+      body: Container(
+        child: Column(
+          children: [
+            FlatButton(
+              textColor: Colors.white,
+              color: Colors.blue,
+              child: Text('Add image using camera',
+                  style: TextStyle(fontSize: 20.0)),
+              onPressed: getImageFromCamera,
+            ),
+            FlatButton(
+              textColor: Colors.white,
+              color: Colors.blue,
+              child: Text('Add image from gallery',
+                  style: TextStyle(fontSize: 20.0)),
+              onPressed: getImageFromGallery,
+            ),
+            Center(
+              child: _image == null
+                  ? Text('No image selected')
+                  : Image.file(_image),
+            )
+          ],
+        ),
       ),
       //floatingActionButton: FloatingActionButton(
       //  onPressed: getImageFromCamera,
       //  tooltip: 'Take Photo',
       //  child: Icon(Icons.add_a_photo),
       //),
-      floatingActionButton: FloatingActionButton(
-        onPressed: getImageFromGallery,
-        tooltip: 'Pick Image From Gallery',
-        child: Icon(Icons.add_photo_alternate),
-      ),
     );
   }
 }
@@ -287,7 +304,7 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               textColor: Colors.white,
               color: Colors.blue,
-              child: Text('Pick image from gallery',
+              child: Text('Add image to carousel',
                   style: TextStyle(fontSize: 20.0)),
               onPressed: _pick_image,
             ),
