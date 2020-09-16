@@ -1,9 +1,26 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'model/photos_library_api_model.dart';
 import 'pages/home_page.dart';
+
+var theseImages = <dynamic>[
+  //AssetImage('images/18025.jpeg'),
+  //AssetImage('images/18125.jpeg'),
+  AssetImage('images/18126.jpeg'),
+  AssetImage('images/18128.jpeg'),
+  AssetImage('images/18152.jpeg'),
+  //AssetImage('images/18154.jpeg'),
+  //AssetImage('images/18156.jpeg'),
+  //AssetImage('images/18158.jpeg'),
+  //AssetImage('images/18159.jpeg'),
+  //AssetImage('images/18320.jpeg'),
+  //AssetImage('images/18322.jpeg')
+];
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -119,23 +136,14 @@ class MyConnectPage extends StatefulWidget {
 
 class _MyConnectPageState extends State<MyConnectPage> {
   @override // just for giggles
-  var theseImages = [
-    AssetImage('images/18025.jpeg'),
-    AssetImage('images/18125.jpeg'),
-    AssetImage('images/18126.jpeg'),
-    AssetImage('images/18128.jpeg'),
-    AssetImage('images/18152.jpeg'),
-    AssetImage('images/18154.jpeg'),
-    AssetImage('images/18156.jpeg'),
-    AssetImage('images/18158.jpeg'),
-    AssetImage('images/18159.jpeg'),
-    AssetImage('images/18320.jpeg'),
-    AssetImage('images/18322.jpeg')
-  ];
   Widget build(BuildContext context) {
+    var theseImagesIndices = new List();
+    for (var index = 0; index < theseImages.length; index++) {
+      theseImagesIndices.add(index);
+    }
     return CarouselSlider(
       options: CarouselOptions(height: 400.0),
-      items: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) {
+      items: theseImagesIndices.map((i) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
@@ -151,6 +159,44 @@ class _MyConnectPageState extends State<MyConnectPage> {
           },
         );
       }).toList(),
+    );
+  }
+}
+
+class MyGalleryPage extends StatefulWidget {
+  MyGalleryPage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  _MyGalleryPageState createState() => _MyGalleryPageState();
+}
+
+class _MyGalleryPageState extends State<MyGalleryPage> {
+  File _image;
+  FileImage _fileimage;
+  final picker = ImagePicker();
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    setState(() {
+      _image = File(pickedFile.path);
+      _fileimage = FileImage(_image);
+      theseImages.add(_fileimage);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Image Picker Example'),
+      ),
+      body: Center(
+        child: _image == null ? Text('No image selected') : Image.file(_image),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: getImage,
+        tooltip: 'Pick Image',
+        child: Icon(Icons.add_a_photo),
+      ),
     );
   }
 }
@@ -189,6 +235,13 @@ class _MyHomePageState extends State<MyHomePage> {
     }));
   }
 
+  void _pick_image() {
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (BuildContext context) {
+      return MyGalleryPage(title: "Pick an image!");
+    }));
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -200,28 +253,35 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               textColor: Colors.white,
               color: Colors.blue,
-              child: Text("Plan a trip", style: TextStyle(fontSize: 20.0)),
+              child: Text('Plan a trip', style: TextStyle(fontSize: 20.0)),
               onPressed: _plan,
             ),
             FlatButton(
               textColor: Colors.white,
               color: Colors.blue,
               child:
-                  Text("Share your photos", style: TextStyle(fontSize: 20.0)),
+                  Text('Share your photos', style: TextStyle(fontSize: 20.0)),
               onPressed: _play,
             ),
             FlatButton(
               textColor: Colors.white,
               color: Colors.blue,
               child:
-                  Text("View photo carousel", style: TextStyle(fontSize: 20.0)),
+                  Text('View photo carousel', style: TextStyle(fontSize: 20.0)),
               onPressed: _connect,
+            ),
+            FlatButton(
+              textColor: Colors.white,
+              color: Colors.blue,
+              child: Text('Pick image from gallery',
+                  style: TextStyle(fontSize: 20.0)),
+              onPressed: _pick_image,
             ),
             Expanded(
               child: Align(
                   alignment: Alignment.bottomRight,
                   child: Text(
-                      "photo credit: National Park Service via www.goodfreephotos.com",
+                      'photo credit: National Park Service via www.goodfreephotos.com',
                       style: TextStyle(color: Colors.white))),
             )
           ],
