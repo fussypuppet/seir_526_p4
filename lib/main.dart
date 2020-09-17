@@ -89,42 +89,35 @@ class _MyPlanPageState extends State<MyPlanPage> {
     ];
     for (var i = 0; i < theseBeaches.length; i++) {
       var marker = Marker(
-        markerId: MarkerId(theseBeaches[i][0]),
-        position: LatLng(theseBeaches[i][1], theseBeaches[i][2]),
-        infoWindow: InfoWindow(
-          title: theseBeaches[i][0],
-        ),
-      );
+          markerId: MarkerId(theseBeaches[i][0]),
+          position: LatLng(theseBeaches[i][1], theseBeaches[i][2]),
+          infoWindow: InfoWindow(
+            title: theseBeaches[i][0],
+          ),
+          onTap: () {
+            print(
+                'Marker for ${theseBeaches[i][0]} clicked with context $context!');
+            showBottomSheet(
+                context: context,
+                builder: (context) => Container(
+                      color: Colors.red,
+                    ));
+          });
       beachSet.add(marker);
     }
-    //final otherEagle = PoolSite(
-    //  'Seattle Eagle',
-    //  47.614172,
-    //  -122.327119,
-    //);
-    //final otherMarker = Marker(
-    //  markerId: MarkerId(otherEagle.name),
-    //   position: LatLng(otherEagle.lat, otherEagle.lng),
-    //   infoWindow: InfoWindow(
-    //     title: otherEagle.name,
-    //     snippet: otherEagle.address,
-    //   ),
-    //);
-    // var otherSet = <Marker>{otherMarker};
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Plan!'),
-          backgroundColor: Colors.blue[700],
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Plan!'),
+        backgroundColor: Colors.blue[700],
+      ),
+      body: GoogleMap(
+        onMapCreated: _onMapCreated,
+        initialCameraPosition: CameraPosition(
+          target: _center,
+          zoom: 11.0,
         ),
-        body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 11.0,
-          ),
-          markers: beachSet,
-        ),
+        markers: beachSet,
       ),
     );
   }
@@ -144,25 +137,29 @@ class _MyConnectPageState extends State<MyConnectPage> {
     for (var index = 0; index < theseImages.length; index++) {
       theseImagesIndices.add(index);
     }
-    return CarouselSlider(
-      options: CarouselOptions(height: 400.0),
-      items: theseImagesIndices.map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: 5.0),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: theseImages[i],
-                  fit: BoxFit.cover,
-                ),
-              ),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Photo Carousel'),
+        ),
+        body: CarouselSlider(
+          options: CarouselOptions(height: 400.0),
+          items: theseImagesIndices.map((i) {
+            return Builder(
+              builder: (BuildContext context) {
+                return Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: theseImages[i],
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
             );
-          },
-        );
-      }).toList(),
-    );
+          }).toList(),
+        ));
   }
 }
 
@@ -216,7 +213,7 @@ class _MyGalleryPageState extends State<MyGalleryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Image Picker Example'),
+        title: Text('Add Image to Carousel'),
       ),
       body: Container(
         child: Column(
@@ -286,7 +283,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _pick_image() {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(builder: (BuildContext context) {
-      return MyGalleryPage(title: "Pick an image!");
+      return MyGalleryPage(title: 'Pick an image!');
     }));
   }
 
