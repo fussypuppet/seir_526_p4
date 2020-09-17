@@ -68,9 +68,16 @@ class _TripPageState extends State<TripPage> {
             Container(
               width: 348,
               margin: const EdgeInsets.only(bottom: 32),
-              child: PrimaryRaisedButton(
-                label: const Text('ADD PHOTO'),
-                onPressed: () => _contributePhoto(context),
+              child: Column(
+                children: [
+                  PrimaryRaisedButton(
+                    label: const Text('ADD PHOTO WITH CAMERA'),
+                    onPressed: () => _contributePhoto(context),
+                  ),
+                  PrimaryRaisedButton(
+                    label: const Text('IMPORT ALBUM'),
+                  ),
+                ],
               ),
             ),
             FutureBuilder<SearchMediaItemsResponse>(

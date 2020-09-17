@@ -235,24 +235,15 @@ class _MyGalleryPageState extends State<MyGalleryPage> {
                   style: TextStyle(fontSize: 20.0)),
               onPressed: getImageFromGallery,
             ),
+            if (_image != null) Image.file(_image, width: 100),
             Center(
-              child: _image == null
-                  ? Text('No image selected', style: TextStyle(fontSize: 20.0))
-                  : Column(
-                      children: [
-                        Image.file(_image),
-                        Text('Image added!', style: TextStyle(fontSize: 20.0)),
-                      ],
-                    ),
-            )
+                child: _image != null
+                    ? Text('Image added!', style: TextStyle(fontSize: 20.0))
+                    : Text('No image selected',
+                        style: TextStyle(fontSize: 20.0))),
           ],
         ),
       ),
-      //floatingActionButton: FloatingActionButton(
-      //  onPressed: getImageFromCamera,
-      //  tooltip: 'Take Photo',
-      //  child: Icon(Icons.add_a_photo),
-      //),
     );
   }
 }
@@ -280,7 +271,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void _play() {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(builder: (BuildContext context) {
-      return HomePage();
+      return HomePage(); // note that this is not MYHomePage
+      //I think HomePage is a google photos API object
     }));
   }
 
