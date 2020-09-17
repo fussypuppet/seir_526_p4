@@ -1,4 +1,5 @@
 # Miscellaneous
+*.aab
 *.class
 *.log
 *.pyc
