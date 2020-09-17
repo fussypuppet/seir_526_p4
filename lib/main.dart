@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
+import 'package:photo_gallery/photo_gallery.dart';
 import 'package:flutter/semantics.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -10,17 +12,17 @@ import 'pages/home_page.dart';
 
 var theseImages = <dynamic>[
   AssetImage('images/no_photos.png'),
-  //AssetImage('images/18025.jpeg'),
-  //AssetImage('images/18125.jpeg'),
-  //AssetImage('images/18126.jpeg'),
-  //AssetImage('images/18128.jpeg'),
-  //AssetImage('images/18152.jpeg'),
-  //AssetImage('images/18154.jpeg'),
-  //AssetImage('images/18156.jpeg'),
-  //AssetImage('images/18158.jpeg'),
-  //AssetImage('images/18159.jpeg'),
-  //AssetImage('images/18320.jpeg'),
-  //AssetImage('images/18322.jpeg')
+//AssetImage('images/18025.jpeg'),
+//AssetImage('images/18125.jpeg'),
+//AssetImage('images/18126.jpeg'),
+//AssetImage('images/18128.jpeg'),
+//AssetImage('images/18152.jpeg'),
+//AssetImage('images/18154.jpeg'),
+//AssetImage('images/18156.jpeg'),
+//AssetImage('images/18158.jpeg'),
+//AssetImage('images/18159.jpeg'),
+//AssetImage('images/18320.jpeg'),
+//AssetImage('images/18322.jpeg')
 ];
 
 void main() {
@@ -174,14 +176,27 @@ class MyGalleryPage extends StatefulWidget {
 class _MyGalleryPageState extends State<MyGalleryPage> {
   File _image;
   FileImage _fileImage;
+  String _saveResult;
   final picker = ImagePicker();
+
   Future getImageFromCamera() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
     setState(() {
       _image = File(pickedFile.path);
       _fileImage = FileImage(_image);
-      theseImages.add(_fileImage);
     });
+    if (theseImages[0] == AssetImage('images/no_photos.png')) {
+      theseImages[0] = _fileImage;
+    } else {
+      theseImages.add(_fileImage);
+    }
+    final thisAlbum = 'TidepoolFinderPics';
+    final awaitResult =
+        await GallerySaver.saveImage(pickedFile.path, albumName: thisAlbum);
+    print('🔴🔴🔴🔴 awaitResult' +
+        awaitResult.toString() +
+        ' and pickedFile.path: ' +
+        pickedFile.path);
   }
 
   Future getImageFromGallery() async {
@@ -283,7 +298,32 @@ class _MyHomePageState extends State<MyHomePage> {
     }));
   }
 
+  Future populateCarousel() async {
+    final List<Album> imageAlbums = await PhotoGallery.listAlbums(
+      mediumType: MediumType.image,
+    );
+    for (var i = 0; i < imageAlbums.length; i++) {
+      if (imageAlbums[i].name == 'TidepoolFinderPics') {
+        final MediaPage imagePage = await imageAlbums[i].listMedia();
+        if (imagePage.items.isNotEmpty) {
+          theseImages.remove(AssetImage('images/no_photos.png'));
+        }
+        for (var j = 0; j < imagePage.items.length; j++) {
+          print(
+              '🟫🟫🟫🟫🟫🟫 hopefully good image info: ${imagePage.items[j]}');
+          var thisImageFile =
+              await PhotoGallery.getFile(mediumId: imagePage.items[j].id);
+          var thisFileImage = FileImage(thisImageFile);
+          theseImages.add(thisFileImage);
+        }
+      }
+    }
+  }
+
   Widget build(BuildContext context) {
+    if (theseImages[0] == AssetImage('images/no_photos.png')) {
+      populateCarousel();
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),

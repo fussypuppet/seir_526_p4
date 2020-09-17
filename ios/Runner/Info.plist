@@ -44,6 +44,8 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Tidepool Finder needs access to photo library to display photos in the image carousel</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Tidepool Finder needss access to camera to display new photos in the image carousel</string>
+	<string>Tidepool Finder needs access to camera to display new photos in the image carousel</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Tidepool Finder wants to save photos you take to your device</string>
 </dict>
 </plist>
