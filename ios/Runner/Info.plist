@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>dev.davidson.p4</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -19,9 +19,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Tide Pool Finder needs access to your camera so you can take new photos and view them in the image carousel</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Tide Pool Finder needs access to your library to save photos you take to your device and display that album to you</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -41,11 +45,5 @@
 	<false/>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Tidepool Finder needs access to photo library to display photos in the image carousel</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Tidepool Finder needs access to camera to display new photos in the image carousel</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Tidepool Finder wants to save photos you take to your device</string>
 </dict>
 </plist>

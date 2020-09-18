@@ -14,17 +14,6 @@ import 'pages/home_page.dart';
 
 var theseImages = <dynamic>[
   AssetImage('images/no_photos.png'),
-//AssetImage('images/18025.jpeg'),
-//AssetImage('images/18125.jpeg'),
-//AssetImage('images/18126.jpeg'),
-//AssetImage('images/18128.jpeg'),
-//AssetImage('images/18152.jpeg'),
-//AssetImage('images/18154.jpeg'),
-//AssetImage('images/18156.jpeg'),
-//AssetImage('images/18158.jpeg'),
-//AssetImage('images/18159.jpeg'),
-//AssetImage('images/18320.jpeg'),
-//AssetImage('images/18322.jpeg')
 ];
 
 void main() {
@@ -62,8 +51,6 @@ class _MyPlanPageState extends State<MyPlanPage> {
   final Map<String, Marker> _markers = {};
   final LatLng _center = const LatLng(47.605, -122.325);
   Future<void> _onMapCreated(GoogleMapController controller) async {
-    //Future<void> _onMapCreated(GoogleMapController controller) async {
-    //final googleOffices = await locations.getGoogleOffices();
     setState(() {
       _markers.clear();
     });
@@ -387,8 +374,6 @@ class _MyHomePageState extends State<MyHomePage> {
           theseImages.remove(AssetImage('images/no_photos.png'));
         }
         for (var j = 0; j < imagePage.items.length; j++) {
-          print(
-              '🟫🟫🟫🟫🟫🟫 hopefully good image info: ${imagePage.items[j]}');
           var thisImageFile =
               await PhotoGallery.getFile(mediumId: imagePage.items[j].id);
           var thisFileImage = FileImage(thisImageFile);
@@ -444,7 +429,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         decoration: BoxDecoration(
           image: DecorationImage(
-            //image: AssetImage('images/18025.jpeg'),
             image: AssetImage('images/el-pescador-beach-in-california.jpg'),
             fit: BoxFit.cover,
           ),
