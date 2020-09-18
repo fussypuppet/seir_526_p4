@@ -124,28 +124,28 @@ class _MyPlanPageState extends State<MyPlanPage> {
         'Saltwater State Park',
         47.3742,
         -122.3191,
-        '25205 8th Place S. Des Moines, WA 98198',
+        '25205 8th Place S, Des Moines, WA 98198',
         'https://parks.state.wa.us/578/Saltwater',
       ],
       [
         'Des Moines Beach Park',
         47.4048,
         -122.3284,
-        '22030 Cliff Ave. S., Des Moines, WA 98198',
+        '22030 Cliff Ave. S, Des Moines, WA 98198',
         'https://www.seattlesouthside.com/listing/des-moines-beach-park/1291/',
       ],
       [
         'Redondo Beach',
         47.3486,
         -122.3243,
-        'Redondo Beach Dr SDes Moines, WA 98198',
+        'Redondo Beach Dr S, Des Moines, WA 98198',
         'https://www.seattlesouthside.com/listing/redondo-pier-boat-launch-%26-boardwalk/1374/',
       ],
       [
         'Dash Point State Park',
         47.317,
         -122.4073,
-        '5700 S.W. Dash Point Road Federal Way, WA 98023',
+        '5700 S.W. Dash Point Rd, Federal Way, WA 98023',
         'https://www.parks.state.wa.us/496/Dash-Point',
       ],
     ];
@@ -233,24 +233,31 @@ class _MyConnectPageState extends State<MyConnectPage> {
         appBar: AppBar(
           title: Text('Photo Carousel'),
         ),
-        body: CarouselSlider(
-          options: CarouselOptions(height: 400.0),
-          items: theseImagesIndices.map((i) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.symmetric(horizontal: 5.0),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: theseImages[i],
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+        body: Container(
+          child: Center(
+            child: CarouselSlider(
+              options: CarouselOptions(height: 400.0),
+              items: theseImagesIndices.map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 5.0),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: theseImages[i],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
                 );
-              },
-            );
-          }).toList(),
+              }).toList(),
+            ),
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
         ));
   }
 }
@@ -349,11 +356,6 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context)
         .push(MaterialPageRoute<void>(builder: (BuildContext context) {
       return MyPlanPage(title: 'Plan3');
-      //Scaffold(
-      //  appBar: AppBar(
-      //    title: Text('Plan!'),
-      //  ),
-      //);
     }));
   }
 
