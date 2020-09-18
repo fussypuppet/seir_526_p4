@@ -71,11 +71,12 @@ class _TripPageState extends State<TripPage> {
               child: Column(
                 children: [
                   PrimaryRaisedButton(
-                    label: const Text('ADD PHOTO WITH CAMERA'),
+                    //label: const Text('ADD PHOTO WITH CAMERA'),
+                    label: const Text('ADD PHOTO FROM GALLERY'),
                     onPressed: () => _contributePhoto(context),
                   ),
                   PrimaryRaisedButton(
-                    label: const Text('IMPORT ALBUM'),
+                    label: const Text('IMPORT ALBUM (coming soon)'),
                   ),
                 ],
               ),

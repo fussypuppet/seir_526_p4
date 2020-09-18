@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Tidepool Finder'),
+      home: MyHomePage(title: 'Tide Pool Finder'),
     );
   }
 }
@@ -68,11 +68,6 @@ class _MyPlanPageState extends State<MyPlanPage> {
       _markers.clear();
     });
   }
-  //GoogleMapController mapController;
-  //final LatLng _center = const LatLng(47.605, -122.325);
-  //void _onMapCreated(GoogleMapController controller) {
-  //  mapController = controller;
-  //}
 
   @override
   Widget build(BuildContext context) {
@@ -200,7 +195,7 @@ class _MyPlanPageState extends State<MyPlanPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Plan!'),
+        title: Text('Nearby Tide Pool Sites'),
         backgroundColor: Colors.blue[700],
       ),
       body: GoogleMap(
@@ -256,7 +251,7 @@ class _MyConnectPageState extends State<MyConnectPage> {
             ),
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ));
   }
@@ -286,7 +281,7 @@ class _MyGalleryPageState extends State<MyGalleryPage> {
     } else {
       theseImages.add(_fileImage);
     }
-    final thisAlbum = 'TidepoolFinderPics';
+    final thisAlbum = 'TidePoolFinder';
     final awaitResult =
         await GallerySaver.saveImage(pickedFile.path, albumName: thisAlbum);
     print('🔴🔴🔴🔴 awaitResult' +
@@ -312,7 +307,7 @@ class _MyGalleryPageState extends State<MyGalleryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Image to Carousel'),
+        title: Text('New Photo'),
       ),
       body: Container(
         child: Column(
@@ -320,14 +315,14 @@ class _MyGalleryPageState extends State<MyGalleryPage> {
             FlatButton(
               textColor: Colors.white,
               color: Colors.blue,
-              child: Text('Add image using camera',
+              child: Text('Add photo using camera',
                   style: TextStyle(fontSize: 20.0)),
               onPressed: getImageFromCamera,
             ),
             FlatButton(
               textColor: Colors.white,
               color: Colors.blue,
-              child: Text('Add image from gallery',
+              child: Text('Import photo from gallery',
                   style: TextStyle(fontSize: 20.0)),
               onPressed: getImageFromGallery,
             ),
@@ -386,7 +381,7 @@ class _MyHomePageState extends State<MyHomePage> {
       mediumType: MediumType.image,
     );
     for (var i = 0; i < imageAlbums.length; i++) {
-      if (imageAlbums[i].name == 'TidepoolFinderPics') {
+      if (imageAlbums[i].name == 'TidePoolFinder') {
         final MediaPage imagePage = await imageAlbums[i].listMedia();
         if (imagePage.items.isNotEmpty) {
           theseImages.remove(AssetImage('images/no_photos.png'));
@@ -417,29 +412,26 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
               textColor: Colors.white,
               color: Colors.blue,
-              child: Text('Plan a trip', style: TextStyle(fontSize: 20.0)),
+              child: Text('Plan Trip', style: TextStyle(fontSize: 20.0)),
               onPressed: _plan,
             ),
             FlatButton(
               textColor: Colors.white,
               color: Colors.blue,
-              child:
-                  Text('Share your photos', style: TextStyle(fontSize: 20.0)),
-              onPressed: _play,
+              child: Text('Add Photo', style: TextStyle(fontSize: 20.0)),
+              onPressed: _pick_image,
             ),
             FlatButton(
               textColor: Colors.white,
               color: Colors.blue,
-              child:
-                  Text('View photo carousel', style: TextStyle(fontSize: 20.0)),
+              child: Text('View photos', style: TextStyle(fontSize: 20.0)),
               onPressed: _connect,
             ),
             FlatButton(
               textColor: Colors.white,
               color: Colors.blue,
-              child: Text('Add image to carousel',
-                  style: TextStyle(fontSize: 20.0)),
-              onPressed: _pick_image,
+              child: Text('Share photos', style: TextStyle(fontSize: 20.0)),
+              onPressed: _play,
             ),
             Expanded(
               child: Align(

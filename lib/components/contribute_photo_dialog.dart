@@ -123,7 +123,8 @@ class _ContributePhotoDialogState extends State<ContributePhotoDialog> {
       padding: const EdgeInsets.all(12),
       child: FlatButton.icon(
         onPressed: () => _getImage(context),
-        label: const Text('UPLOAD PHOTO'),
+        //label: const Text('UPLOAD PHOTO'),
+        label: const Text('CHOOSE PHOTO'),
         textColor: Colors.green[800],
         icon: const Icon(Icons.file_upload),
       ),
@@ -135,7 +136,8 @@ class _ContributePhotoDialogState extends State<ContributePhotoDialog> {
     // device.
     final File image = await _imagePicker
         .getImage(
-          source: ImageSource.camera,
+          //source: ImageSource.camera,
+          source: ImageSource.gallery,
         )
         .then((pickedFile) => File(pickedFile.path));
     // Store the image that was selected.

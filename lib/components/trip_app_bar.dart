@@ -38,7 +38,7 @@ class TripAppBar extends StatelessWidget implements PreferredSizeWidget {
               //  padding: const EdgeInsets.only(right: 8),
               //),
               Text(
-                'Plenty of Starfish',
+                'Share Photos',
                 style: TextStyle(color: Colors.white),
               ),
             ],
