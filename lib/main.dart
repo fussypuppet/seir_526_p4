@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:photo_gallery/photo_gallery.dart';
 import 'package:flutter/semantics.dart';
@@ -7,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'model/photos_library_api_model.dart';
 import 'pages/home_page.dart';
 
@@ -76,17 +78,87 @@ class _MyPlanPageState extends State<MyPlanPage> {
   Widget build(BuildContext context) {
     var beachSet = <Marker>{};
     const theseBeaches = [
-      ['Richmond Beach Saltwater Park', 47.7652, -122.383],
-      ['Carkeek Park', 47.7119, -122.3724],
-      ['Golden Gardens Park', 47.6925, -122.4029],
-      ['Charles Richey Sr Viewpoint', 47.5735, -122.4164],
-      ['Lincoln Park', 47.5315, -122.3929],
-      ['Seahurst Ed Munro Park', 47.4695, -122.3622],
-      ['Saltwater State Park', 47.3742, -122.3191],
-      ['Des Moines Beach Park', 47.4048, -122.3284],
-      ['Redondo Beach', 47.3486, -122.3243],
-      ['Dash Point State Park', 47.317, -122.4073],
+      [
+        'Richmond Beach Saltwater Park',
+        47.7652,
+        -122.383,
+        '2021 NW 190th Street Shoreline, WA 98177',
+        'https://www.shorelinewa.gov/Home/Components/FacilityDirectory/FacilityDirectory/1059/135',
+      ],
+      [
+        'Carkeek Park',
+        47.7119,
+        -122.3724,
+        '950 NW Carkeek Park Rd., Seattle, WA 98177',
+        'https://www.seattle.gov/parks/find/parks/carkeek-park',
+      ],
+      [
+        'Golden Gardens Park',
+        47.6925,
+        -122.4029,
+        '8498 Seaview Pl. NW, Seattle, WA 98117',
+        'https://www.seattle.gov/parks/find/parks/golden-gardens-park',
+      ],
+      [
+        'Charles Richey Sr Viewpoint',
+        47.5735,
+        -122.4164,
+        '3521 Beach Dr. SW, Seattle, WA 98116',
+        'https://www.seattle.gov/parks/find/parks/charles-richey-sr-viewpoint',
+      ],
+      [
+        'Lincoln Park',
+        47.5315,
+        -122.3929,
+        '8011 Fauntleroy Way SW, Seattle, WA 98136',
+        'https://www.seattle.gov/parks/find/parks/lincoln-park',
+      ],
+      [
+        'Seahurst Ed Munro Park',
+        47.4695,
+        -122.3622,
+        '1600 SW Seahurst Park Rd, Burien, WA 98166',
+        'https://www.burienwa.gov/cms/one.aspx?portalId=11046019&pageId=12542296',
+      ],
+      [
+        'Saltwater State Park',
+        47.3742,
+        -122.3191,
+        '25205 8th Place S. Des Moines, WA 98198',
+        'https://parks.state.wa.us/578/Saltwater',
+      ],
+      [
+        'Des Moines Beach Park',
+        47.4048,
+        -122.3284,
+        '22030 Cliff Ave. S., Des Moines, WA 98198',
+        'https://www.seattlesouthside.com/listing/des-moines-beach-park/1291/',
+      ],
+      [
+        'Redondo Beach',
+        47.3486,
+        -122.3243,
+        'Redondo Beach Dr SDes Moines, WA 98198',
+        'https://www.seattlesouthside.com/listing/redondo-pier-boat-launch-%26-boardwalk/1374/',
+      ],
+      [
+        'Dash Point State Park',
+        47.317,
+        -122.4073,
+        '5700 S.W. Dash Point Road Federal Way, WA 98023',
+        'https://www.parks.state.wa.us/496/Dash-Point',
+      ],
     ];
+
+    _launchURL(String thisURL) async {
+      var url = thisURL;
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        print('🟥🟥🟥🟥🟥🟥Could not launch $url');
+      }
+    }
+
     for (var i = 0; i < theseBeaches.length; i++) {
       var marker = Marker(
           markerId: MarkerId(theseBeaches[i][0]),
@@ -97,11 +169,31 @@ class _MyPlanPageState extends State<MyPlanPage> {
           onTap: () {
             print(
                 'Marker for ${theseBeaches[i][0]} clicked with context $context!');
-            showBottomSheet(
+            showModalBottomSheet(
                 context: context,
                 builder: (context) => Container(
-                      color: Colors.red,
-                    ));
+                    height: MediaQuery.of(context).size.height * .25,
+                    color: Colors.white,
+                    child: Column(children: [
+                      Text(theseBeaches[i][0],
+                          style: TextStyle(fontSize: 20.0)),
+                      Text(theseBeaches[i][3],
+                          style: TextStyle(fontSize: 17.0)),
+                      FlatButton(
+                        textColor: Colors.white,
+                        color: Colors.blue,
+                        child: Text('Open in Google Maps',
+                            style: TextStyle(fontSize: 20.0)),
+                        onPressed: () => _launchURL(
+                            'https://www.google.com/maps/search/?api=1&query=${Uri.encodeFull(theseBeaches[i][3])}'),
+                      ),
+                      FlatButton(
+                          textColor: Colors.white,
+                          color: Colors.blue,
+                          child: Text('View Website',
+                              style: TextStyle(fontSize: 20.0)),
+                          onPressed: () => _launchURL(theseBeaches[i][4]))
+                    ])));
           });
       beachSet.add(marker);
     }
@@ -363,8 +455,6 @@ class _MyHomePageState extends State<MyHomePage> {
             fit: BoxFit.cover,
           ),
         ),
-        //child: Text(
-        //    "")
       ),
     );
   }
